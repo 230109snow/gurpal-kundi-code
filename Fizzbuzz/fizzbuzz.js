@@ -7,21 +7,18 @@ function fizzbuzz() {
     }
     else {
         let str = 'Given: ' + input + '\n';
-        let fizz = 'Fizz';
-        let buzz = 'Buzz';
-        let fizzBuzz = 'Fizzbuzz';
 
         for (let i = 1; i <= input; i++) {
             let tempStr = '';
 
             if (i % 15 === 0) {
-                tempStr = fizzBuzz + ' (' + i + ')\n';
+                tempStr = 'Fizzbuzz (' + i + ')\n';
             }
             else if (i % 5 === 0) {
-                tempStr = buzz + ' (' + i + ')\n';
+                tempStr = 'Buzz (' + i + ')\n';
             }
             else if (i % 3 === 0) {
-                tempStr = fizz + ' (' + i + ')\n';
+                tempStr = 'Fizz (' + i + ')\n';
             }
             else {
                 tempStr = i + '\n';
