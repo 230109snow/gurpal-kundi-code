@@ -113,7 +113,6 @@ equalsBtn.addEventListener('click', () => {
   calc.storedResult = result;
 })
 
-
 clearBtn.addEventListener('click', () => {
   calc.clearDisplay();
 })
