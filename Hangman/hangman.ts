@@ -1,12 +1,14 @@
 class Hangman {
     private word: string;
     private guessStr: string;
-    private guesses: number;
+    private wrongGuesses: number;
+    private correctGuesses: number;
 
     public constructor(word: string) {
-        this.word = word;
+        this.word = word.toUpperCase();
         this.guessStr = "";
-        this.guesses = 0;
+        this.wrongGuesses = 0;
+        this.correctGuesses = 0;
 
         const guessDiv = document.getElementById('guessDiv');
 
@@ -19,11 +21,16 @@ class Hangman {
     }
 
     public checkGuess(letter: string) {
-
+        console.log(letter);
     }
 
     public checkWinLoss() {
-        
+        if(this.wrongGuesses === 6)
+            return 0;
+        else if(this.correctGuesses === this.word.length)
+            return 1;
+        else
+            return 2;
     }
 
     public printGuessStr(divElement: HTMLElement | null) {
@@ -45,4 +52,18 @@ class Hangman {
 }
 
 const hangman = new Hangman("apple");
+const letterBtns = document.querySelectorAll('.letterBtns') as NodeListOf<HTMLElement>;
+
+letterBtns.forEach(button => {
+    button.addEventListener("click", () => {
+        hangman.checkGuess(button.innerText);
+
+        switch(hangman.checkWinLoss()) {
+            case 0:
+            case 1:
+            case 2:
+            default:
+        }
+    })
+  })
 
