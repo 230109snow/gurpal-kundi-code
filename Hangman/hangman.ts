@@ -21,7 +21,25 @@ class Hangman {
     }
 
     public checkGuess(letter: string) {
-        console.log(letter);
+        const guess = this.guessStr.split('');
+        let flag: boolean = true;
+
+        for(let i: number = 0; i < this.word.length; i++) {
+            if(letter === this.word[i]) {
+                guess[i] = letter;
+                this.correctGuesses++;
+                flag = false;
+            }
+        }
+
+        if(flag) {
+            this.wrongGuesses++;
+        }
+
+        this.guessStr = guess.join('');
+        const guessDiv = document.getElementById('guessDiv');
+        this.printGuessStr(guessDiv);
+
     }
 
     public checkWinLoss() {
@@ -35,15 +53,11 @@ class Hangman {
 
     public printGuessStr(divElement: HTMLElement | null) {
         let tempStr: string = "";
-        console.log(this.guessStr);
-        console.log(this.guessStr.length);
 
         for (let i: number = 0; i < this.guessStr.length; i++)
         {
             tempStr += this.guessStr[i] + " ";
         }
-
-        console.log(tempStr);
 
         if (divElement != null) {
             divElement.innerText = tempStr;
@@ -60,10 +74,18 @@ letterBtns.forEach(button => {
 
         switch(hangman.checkWinLoss()) {
             case 0:
+                console.log("Lose");
+                break;
             case 1:
+                console.log("Win");
+                break;
             case 2:
             default:
+                console.log("Continue");
+                break;
         }
+
+        button.style.visibility = 'hidden';
     })
   })
 
