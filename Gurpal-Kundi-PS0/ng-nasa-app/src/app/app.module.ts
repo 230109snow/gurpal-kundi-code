@@ -7,12 +7,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TopicSearchComponent } from './topic-search/topic-search.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    TopicSearchComponent
+    TopicSearchComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

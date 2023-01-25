@@ -14,7 +14,7 @@ export class TopicSearchComponent {
   numPics : number = 0;
   nasaPics : any[] = [];
   keyword : string = "";
-  now : number | Date = Date.now();
+  // now : number | Date = Date.now();
 
   validation = {
     required: true,
