@@ -30,15 +30,28 @@
         <br>
         <br>
 
+        <label for="date">Date</label>
+        <input type="date" required pattern="\d{4}-\d{2}-\d{2}" name="date" id="date" [(ngModel)]="date">
+
+        <br>
+        <br>
+
         <input type="submit" value="Get Coordinates">
     </form>
 
+    <br>
+    <br>
     <div>Latitude: {{lat}}</div>
     <div>Longitude: {{lon}}</div>
-    <!-- <button (click)="getImage()">Get Image</button> -->
+    <!-- <br>
+    <br>
+    <button (click)="getImage()">Get Image</button> -->
 
-    <!-- <div *ngFor="let pic of nasaPics">
-        <img [src]="pic.links[0].href" width=200 alt="">
-    </div> -->
+    <br>
+    <br>
+
+    <div>
+        <img [src]="picUrl" width=400 alt="">
+    </div>
 </div>
 

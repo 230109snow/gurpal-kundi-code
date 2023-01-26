@@ -18,6 +18,8 @@ export class LocationSearchComponent {
   country: string = "";
   lat: number = 0;
   lon: number = 0;
+  picUrl: string = "";
+  date: number | Date = Date.now();
 
   getCoords(): void {
     const url_1 = `https://maps.googleapis.com/maps/api/geocode/json?address=
@@ -30,25 +32,7 @@ export class LocationSearchComponent {
         this.lon = data.results[0].geometry.location.lng;
         console.log(this.lat);
         console.log(this.lon);
-      },
-      error: (err: any) => {
-        console.log(err);
-      }
-    })
-  }
-
-  getImage(): void {
-    const url_2 = `https://api.nasa.gov/planetary/earth/imagery?lon=${this.lon}&lat=${this.lat}&api_key=DEMO_KEY`;
-
-
-
-    this.http.get(url_2,
-      {headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"}}).subscribe({
-      next: (data: any) => {
-        console.log(data);
+        this.picUrl = `http://127.0.0.1:5000/v5000/earth/imagery/?lon=${this.lon}&lat=${this.lat}&dim=0.32&date=${this.date}`;
       },
       error: (err: any) => {
         console.log(err);
