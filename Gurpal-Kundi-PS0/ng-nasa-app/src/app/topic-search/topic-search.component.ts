@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { apikey } from 'src/api-key';
+import { NASAAPI } from 'src/api-key';
 
 @Component({
   selector: 'app-topic-search',
@@ -25,11 +25,15 @@ export class TopicSearchComponent {
   getPics() : void {
     const url = `https://images-api.nasa.gov/search?q=${this.keyword}&media_type=image&page_size=1000`;
 
-    this.http.get(url).subscribe((data: any) => {
-
-      console.log(data.collection.items.length);
-      this.nasaPics = data.collection.items.sort(() => 0.5 - Math.random()).slice(0, this.numPics); 
-      console.log(this.nasaPics);
+    this.http.get(url).subscribe({
+      next: (data: any) => {
+        console.log(data.collection.items.length);
+        this.nasaPics = data.collection.items.sort(() => 0.5 - Math.random()).slice(0, this.numPics); 
+        console.log(this.nasaPics);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
     })
   }
 
