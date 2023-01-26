@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TopicSearchComponent } from './topic-search/topic-search.component';
 import { HomeComponent } from './home/home.component';
 import { LocationSearchComponent } from './location-search/location-search.component';
+import { PODComponent } from './pod/pod.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LocationSearchComponent } from './location-search/location-search.compo
     NavbarComponent,
     TopicSearchComponent,
     HomeComponent,
-    LocationSearchComponent
+    LocationSearchComponent,
+    PODComponent
   ],
   imports: [
     BrowserModule,

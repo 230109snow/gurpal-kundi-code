@@ -38,14 +38,15 @@ export class LocationSearchComponent {
   }
 
   getImage(): void {
-    const url_2 = `https://api.nasa.gov/planetary/earth/imagery?lon=${this.lon}&lat=${this.lat}&api_key=${NASAAPI}`;
+    const url_2 = `https://api.nasa.gov/planetary/earth/imagery?lon=${this.lon}&lat=${this.lat}&api_key=DEMO_KEY`;
 
-    // {headers: {
-    //   "Access-Control-Allow-Origin": "*",
-    //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
-    //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"}}
 
-    this.http.get(url_2).subscribe({
+
+    this.http.get(url_2,
+      {headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"}}).subscribe({
       next: (data: any) => {
         console.log(data);
       },
