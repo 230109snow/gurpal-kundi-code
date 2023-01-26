@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { googleAPI } from 'src/api-key';
+import { googleAPI, NASAAPI } from 'src/api-key';
 
 @Component({
   selector: 'app-location-search',
@@ -16,13 +16,36 @@ export class LocationSearchComponent {
   city: string = "";
   state: string = "";
   country: string = "";
-  // now : number | Date = Date.now();
+  lat: number = 0;
+  lon: number = 0;
 
-  getCoord(): void {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=
+  getCoords(): void {
+    const url_1 = `https://maps.googleapis.com/maps/api/geocode/json?address=
     ${this.addNum}%20${this.street}%20${this.city}%20${this.state}%20${this.country}&key=${googleAPI}`;
   
-    this.http.get(url).subscribe({
+    this.http.get(url_1).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        this.lat = data.results[0].geometry.location.lat;
+        this.lon = data.results[0].geometry.location.lng;
+        console.log(this.lat);
+        console.log(this.lon);
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    })
+  }
+
+  getImage(): void {
+    const url_2 = `https://api.nasa.gov/planetary/earth/imagery?lon=${this.lon}&lat=${this.lat}&api_key=${NASAAPI}`;
+
+    // {headers: {
+    //   "Access-Control-Allow-Origin": "*",
+    //   "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+    //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"}}
+
+    this.http.get(url_2).subscribe({
       next: (data: any) => {
         console.log(data);
       },
@@ -31,16 +54,4 @@ export class LocationSearchComponent {
       }
     })
   }
-
-  getImage() : void {
-    // const url = `https://images-api.nasa.gov/search?q=${this.keyword}&media_type=image&page_size=1000`;
-
-    // this.http.get(url).subscribe((data: any) => {
-
-    //   console.log(data.collection.items.length);
-    //   this.nasaPics = data.collection.items.sort(() => 0.5 - Math.random()).slice(0, this.numPics); 
-    //   console.log(this.nasaPics);
-    // })
-  }
-
 }

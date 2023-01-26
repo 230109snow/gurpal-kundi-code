@@ -1,5 +1,5 @@
 <div id="outer-div" style="text-align: center">
-    <form #picform="ngForm" (submit)="getCoord()">
+    <form #picform="ngForm" (submit)="getCoords()">
         <label for="addNum">Address Number</label>
         <input type="text" name="addNum" id="addNum" [(ngModel)]="addNum">
 
@@ -30,8 +30,10 @@
         <br>
         <br>
 
-        <input type="submit" value="Get Image">
+        <input type="submit" value="Get Coordinates">
     </form>
+
+    <button (click)="getImage()">Get Image</button>
 
     <!-- <div *ngFor="let pic of nasaPics">
         <img [src]="pic.links[0].href" width=200 alt="">
